@@ -125,7 +125,7 @@ var contentText = [
     "Love is all around you wherever you go!",
     "You are complete as you are, others simply support you!",
     "You are kind!",
-    "Your smile is gorgeus!",
+    "Your smile is gorgeous!",
     "You shouldn't change for anyone!",
     "You are perfect as you are!",
     "You are loved and worthy!",
