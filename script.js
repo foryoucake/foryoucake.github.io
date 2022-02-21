@@ -12,7 +12,7 @@ function wrapLettersInSpan() {
 }
 
 function animate() {
-    anime.timeline({
+    runningAnimIn0 = anime.timeline({
         loop: false,
         complete: function(anim) {
             if (anim.began && anim.completed) {
@@ -32,17 +32,26 @@ function animate() {
         easing: "easeInOutQuad",
         duration: 1500,
         delay: (el, i) => 30 * (i+1)
-    })
-    .add({
+    });
+
+    runningAnimIn1 = anime({
         targets: '.emoji',
         opacity: [0,1],
         easing: "easeInOutQuad",
         duration: 400,
+        delay: 1300
     })
 }
 
-function aniamteOut() {
-    anime.timeline({
+function animateOut() {
+    // Stop all running animations first
+    runningAnimIn0.pause();
+    runningAnimIn1.pause();
+    runningAnimOut0.pause();
+    runningAnimOut1.pause();
+
+
+    runningAnimOut0 = anime.timeline({
         loop: false,
         complete: function(anim) {
             if (anim.began && anim.completed) {
@@ -60,12 +69,14 @@ function aniamteOut() {
         duration: 500,
         easing: "easeOutExpo",
         delay: 50
-    })
-    .add({
+    });
+
+    runningAnimOut0 = anime({
         targets: '.emoji',
         opacity: 0,
         easing: "easeInOutQuad",
-        duration: 200,
+        duration: 100,
+        delay: 300
     });
 }
 
@@ -101,22 +112,40 @@ function getNextContent() {
     return content;
 }
 
+// ========================
+// MAIN
+// ========================
 $(document).ready(function () {
     console.log("Document ready!");
-
+    
     const btn = document.getElementById('button');
     btn.onclick = function(){
-        aniamteOut();
+        animateOut();
     };
-
+    
     wrapLettersInSpan();
 
     animate();
-
-    // const textEl = document.getElementsByClassName("slide-text");
-    // textEl[0].innerHTML = "c"
-
+    
+    // Animate also button to show later
+    anime({
+        targets: '#button',
+        opacity: 1,
+        duration: 500,
+        easing: "easeOutExpo",
+        delay: 2000
+    });
+    
 });
+
+// ========================
+// GLOBALS
+// ========================
+var runningAnimIn0 = anime({});
+var runningAnimIn1 = anime({});
+
+var runningAnimOut0 = anime({});
+var runningAnimOut1 = anime({});
 
 var contentText = [
     "You deserve to be happy!",
@@ -150,12 +179,13 @@ var emojis = [
     '❤️',
     '❣️',
     '💝',
-    '👸',
+    '👸🏻',
     '🐨',
     '💖',
     '🍀',
     '😇',
     '💗',
     '🙊',
-    '🙏'
+    '🙏🏽',
+    '☀️'
 ];
