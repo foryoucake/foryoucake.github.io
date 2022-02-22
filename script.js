@@ -80,6 +80,15 @@ function animateOut() {
     });
 }
 
+function animateButton() {
+    anime({
+        targets: '#button',
+        scale: [1, 0.7, 1.3, 1],
+        easing: "easeInOutQuad",
+        duration: 300,
+    })
+}
+
 function changeTextContent(content) {
     const textEl = document.getElementsByClassName("slide-text");
     textEl[0].innerHTML = content;
@@ -121,6 +130,7 @@ $(document).ready(function () {
     const btn = document.getElementById('button');
     btn.onclick = function(){
         animateOut();
+        animateButton();
     };
     
     wrapLettersInSpan();
