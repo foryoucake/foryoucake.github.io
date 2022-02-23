@@ -122,7 +122,7 @@ function getNextContent() {
 // ========================
 $(document).ready(function () {
     console.log("Document ready!");
-    
+
     const btn = document.getElementById('magic-button');
     btn.onclick = function(){
         animateOut();
@@ -155,25 +155,40 @@ $(document).ready(function () {
         easing: "easeOutExpo",
         delay: 6000
     });
-    
-    
+        
     // DAILY
     // Show daily
     wrapLettersInSpan(".title-text");
+    
+    changeTextContent("daily-text", dailyText[getDailyIndex()]);
     wrapLettersInSpan(".daily-text");
     animate('.title-text', '', 500);
 
     changeEmojiContentRandom("daily-emoji")
     animate('.daily-text', '.daily-emoji', 1100);
-
 });
 
-// ========================
-// Utils
-// ========================
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+function getDayFromMs(ms) {
+    return Math.floor(ms / 1000 / 60 / 60 / 24);
 }
+
+function getDailyIndex() {
+    let startDate = new Date("February 23, 2022");
+    let msDiff = Date.now() - startDate.getTime();
+    return getDayFromMs(msDiff) % dailyText.length;
+}
+
+// ========================
+// Media queries to save attributes that change on window size
+// ========================
+// var mediaQueryList = window.matchMedia('(max-width: 770px)');
+// mediaQueryList.onchange = (e) => {
+//     if (e.matches) {
+//         /* the viewport is 770px pixels wide or less */
+//     } else {
+//         /* the viewport is more than than 770px pixels wide */
+//     }
+// };
 
 // ========================
 // GLOBALS
@@ -207,6 +222,16 @@ var contentText = [
     "Your pleasure does not require someone else's pain!",
     "Your sensitivity is beautiful, and your feelings and emotions are valid!",
     "There is something in this world that only you can do. That is why you are here!",
+];
+
+var dailyText = [
+    "I'm worthy of what I desire!",
+    "I can. I will. End of story.",
+    "I am adventurous. I overcome fears by following my dreams.",
+    "I feed my spirit. I train my body. I focus my mind. It's my time.",
+    "I am in charge of my life.",
+    "I am choosing and not waiting to be chosen.",
+    "I am worthy. I am loved. I am enough.",
 ];
 
 var contentIdx = Array.from(Array(contentText.length).keys());

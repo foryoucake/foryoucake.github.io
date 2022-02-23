@@ -5,7 +5,7 @@ html, body {
 .vignette-shadow {
 background: rgb(39, 39, 39);
 height: 100%;
-box-shadow: inset 0 0 100px rgba(53, 51, 32, 0.596);
+/* box-shadow: inset 0 0 100px rgba(53, 51, 32, 0.596); */
 }
 
 .emoji {
@@ -69,12 +69,11 @@ box-shadow: inset 0 0 100px rgba(53, 51, 32, 0.596);
 
 .slide-text {
     font-family: 'Cabin', sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     
     color: rgb(214, 202, 202);
     
     text-align: center;
-
     /* opacity: 0; */
 }
 
@@ -100,7 +99,7 @@ box-shadow: inset 0 0 100px rgba(53, 51, 32, 0.596);
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 770px) {
  
 .slide-title-text {
   font-family: 'Cabin', sans-serif;
@@ -141,6 +140,7 @@ box-shadow: inset 0 0 100px rgba(53, 51, 32, 0.596);
     
     text-align: center;
 }
+
 }
 
 /* Carousel styling */
@@ -149,12 +149,17 @@ box-shadow: inset 0 0 100px rgba(53, 51, 32, 0.596);
 }
 
 .quote-sections {
-  height: 35vh;
+  height: 40vh;
+  min-height: 40vh;
+
+  min-width: 30vw;
+  /* min-width: 40vh; */
+
   width: 90%;
 
   border-radius: 50px;
   background-color: #a0a0a020;
 
   padding: 20px;
-  /* box-shadow: -5px 5px 1px #8c8991c9; */
+  margin-right: 40px;
 }
