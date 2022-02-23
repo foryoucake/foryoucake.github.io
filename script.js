@@ -1,33 +1,29 @@
-function wrapLettersInSpan() {
+function wrapLettersInSpan(className) {
     console.log("Every word into span");
 
-    var textWrapper = document.querySelectorAll('.slide-text');
+    var textWrapper = document.querySelectorAll(className);
     
     if (textWrapper != null) {
         textWrapper.forEach(element => {
-            console.log("Converting .slide-text sentences into letters captured by span");
+            console.log("Converting " + className + " sentences into letters captured by span");
             element.innerHTML = element.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
         });
     }
 }
 
-function animate() {
+function animate(textClass, emojiClass, animDelay=0) {
     runningAnimIn0 = anime.timeline({
-        loop: false,
-        complete: function(anim) {
-            if (anim.began && anim.completed) {
-                // todo
-            }
-        },
+        loop: false
     })
     .add({
-        targets: '.slide-text',
+        targets: textClass,
         opacity: 1,
         easing: "easeInOutQuad",
         duration: 1,
+        delay: animDelay
     })
     .add({
-        targets: '.slide-text .letter',
+        targets: textClass + ' .letter',
         opacity: [0,1],
         easing: "easeInOutQuad",
         duration: 1500,
@@ -35,11 +31,11 @@ function animate() {
     });
 
     runningAnimIn1 = anime({
-        targets: '.emoji',
+        targets: emojiClass,
         opacity: [0,1],
         easing: "easeInOutQuad",
         duration: 400,
-        delay: 1300
+        delay: 1300 + animDelay
     })
 }
 
@@ -56,10 +52,10 @@ function animateOut() {
         complete: function(anim) {
             if (anim.began && anim.completed) {
                 let content = getNextContent();
-                changeTextContent(content);
-                wrapLettersInSpan();
-                changeEmojiContentRandom();
-                animate();
+                changeTextContent("slide-text", content);
+                wrapLettersInSpan('.slide-text');
+                changeEmojiContentRandom('emoji');
+                animate('.slide-text', '.emoji');
             }
         },
     })
@@ -82,20 +78,20 @@ function animateOut() {
 
 function animateButton() {
     anime({
-        targets: '#button',
+        targets: '#magic-button',
         scale: [1, 0.7, 1.3, 1],
         easing: "easeInOutQuad",
         duration: 300,
     })
 }
 
-function changeTextContent(content) {
-    const textEl = document.getElementsByClassName("slide-text");
+function changeTextContent(className, content) {
+    const textEl = document.getElementsByClassName(className);
     textEl[0].innerHTML = content;
 }
 
-function changeEmojiContentRandom() {
-    const emoj = document.getElementsByClassName("emoji");
+function changeEmojiContentRandom(emojiClass) {
+    const emoj = document.getElementsByClassName(emojiClass);
     emoj[0].innerHTML = emojis[getRandomIndex(emojis)];
 }
 
@@ -127,26 +123,57 @@ function getNextContent() {
 $(document).ready(function () {
     console.log("Document ready!");
     
-    const btn = document.getElementById('button');
+    const btn = document.getElementById('magic-button');
     btn.onclick = function(){
         animateOut();
         animateButton();
     };
     
-    wrapLettersInSpan();
+    // FOR YOU
+    // This text can be changed when button is pressed (animate out calls animate again)
+    wrapLettersInSpan(".slide-text");
+    animate('.slide-text', '.emoji', 4500); // animate for you section
 
-    animate();
-    
-    // Animate also button to show later
+    // Show quote section for you background
     anime({
-        targets: '#button',
+        targets: '.quote-section-for-you',
+        opacity: 1,
+        duration: 400,
+        easing: "easeOutExpo",
+        delay: 4000
+    });
+
+    // Show title for you
+    wrapLettersInSpan(".slide-title-text");
+    animate('.slide-title-text', '', 4200);
+
+    // Show magic button with delay
+    anime({
+        targets: '#magic-button',
         opacity: 1,
         duration: 500,
         easing: "easeOutExpo",
-        delay: 2000
+        delay: 6000
     });
     
+    
+    // DAILY
+    // Show daily
+    wrapLettersInSpan(".title-text");
+    wrapLettersInSpan(".daily-text");
+    animate('.title-text', '', 500);
+
+    changeEmojiContentRandom("daily-emoji")
+    animate('.daily-text', '.daily-emoji', 1100);
+
 });
+
+// ========================
+// Utils
+// ========================
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 // ========================
 // GLOBALS
