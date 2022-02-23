@@ -220,7 +220,6 @@ var contentText = [
     "You uplift your joy and the joy of others!",
     "Your feelings deserve names, deserve recognition, deserve to be felt!",
     "Your perspective is unique and important!",
-    "Your pleasure does not require someone else's pain!",
     "Your sensitivity is beautiful, and your feelings and emotions are valid!",
     "There is something in this world that only you can do. That is why you are here!",
 ];
