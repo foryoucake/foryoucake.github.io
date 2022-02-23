@@ -158,6 +158,7 @@ $(document).ready(function () {
         
     // DAILY
     // Show daily
+    changeTextContent("title-text", "Daily " + getDailyIndex());
     wrapLettersInSpan(".title-text");
     
     changeTextContent("daily-text", dailyText[getDailyIndex()]);
