@@ -114,7 +114,7 @@ height: 100%;
   padding: 20px;
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 850px) {
  
 .slide-title-text {
   font-family: 'Cabin', sans-serif;
@@ -157,8 +157,8 @@ height: 100%;
 }
 
 .quote-sections {
-  height: 30vh;
-  min-height: 30vh;
+  height: 35vh;
+  min-height: 35vh;
 
   width: 90%;
 
@@ -176,7 +176,7 @@ height: 100%;
 
 
 .quote-section-for-you {
-  min-height: 40vh;
+  min-height: 43vh;
 }
 
 .top-title {
