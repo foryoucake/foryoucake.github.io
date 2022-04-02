@@ -161,7 +161,7 @@ $(document).ready(function () {
     changeTextContent("title-text", "Daily " + getDailyIndex());
     wrapLettersInSpan(".title-text");
     
-    changeTextContent("daily-text", dailyText[getDailyIndex()]);
+    changeTextContent("daily-text", dailyText[getDailyIndexMod()]);
     wrapLettersInSpan(".daily-text");
     animate('.title-text', '', 500);
 
@@ -176,7 +176,11 @@ function getDayFromMs(ms) {
 function getDailyIndex() {
     let startDate = new Date("February 23, 2022");
     let msDiff = Date.now() - startDate.getTime();
-    return getDayFromMs(msDiff) % dailyText.length;
+    return getDayFromMs(msDiff);
+}
+
+function getDailyIndexMod() {
+    return getDailyIndex() % dailyText.length;
 }
 
 // ========================
