@@ -167,6 +167,9 @@ $(document).ready(function () {
 
     changeEmojiContentRandom("daily-emoji")
     animate('.daily-text', '.daily-emoji', 1100);
+
+    wrapLettersInSpan(".new-daily-text");
+    animate('.new-daily-text', '.new-daily-emoji', 1100);
 });
 
 function getDayFromMs(ms) {
