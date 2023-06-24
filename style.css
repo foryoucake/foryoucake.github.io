@@ -82,7 +82,7 @@ height: 100%;
 }
 
 
-.title-text {
+.title-text, .new-title-text {
     font-family: 'Cabin', sans-serif;
     font-size: 50px;
     
@@ -126,6 +126,21 @@ height: 100%;
   padding: 20px;
 }
 
+.new-quote-sections {
+  height: 60vh;
+  min-height: 40vh;
+
+  width: 90%;
+
+  min-width: 55vw;
+  max-width: 55vw;
+
+  border-radius: 50px;
+  background-color: #a0a0a020;
+
+  padding: 20px;
+}
+
 @media screen and (max-width: 850px) {
  
 .slide-title-text {
@@ -148,7 +163,7 @@ height: 100%;
   text-align: center;
 }
 
-.title-text {
+.title-text, .new-title-text {
   font-family: 'Cabin', sans-serif;
   font-size: 30px;
   
@@ -179,6 +194,21 @@ height: 100%;
 
 .quote-sections {
   height: 35vh;
+  min-height: 35vh;
+
+  width: 90%;
+
+  min-width: 90vw;
+  max-width: 90vw;
+
+  border-radius: 50px;
+  background-color: #a0a0a020;
+
+  padding: 20px;
+}
+
+.new-quote-sections {
+  height: 44vh;
   min-height: 35vh;
 
   width: 90%;

@@ -164,10 +164,13 @@ $(document).ready(function () {
     changeTextContent("daily-text", dailyText[getDailyIndexMod()]);
     wrapLettersInSpan(".daily-text");
     animate('.title-text', '', 500);
-
+    
     changeEmojiContentRandom("daily-emoji")
     animate('.daily-text', '.daily-emoji', 1100);
-
+    
+    // SHOW THANK YOU
+    wrapLettersInSpan(".new-title-text");
+    animate('.new-title-text', '', 500);
     wrapLettersInSpan(".new-daily-text");
     animate('.new-daily-text', '.new-daily-emoji', 1100);
 });
